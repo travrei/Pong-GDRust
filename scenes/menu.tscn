@@ -1,0 +1,171 @@
+[gd_scene load_steps=6 format=3 uid="uid://breeejo81b01y"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_e53kq"]
+[ext_resource type="PackedScene" uid="uid://c5trnm36cj4p4" path="res://scenes/background.tscn" id="1_vvu1p"]
+[ext_resource type="Texture2D" uid="uid://bwsa27qslnwlv" path="res://assets/eye-icon-whit.png" id="3_0aph3"]
+[ext_resource type="Texture2D" uid="uid://b5s71wmpr4uol" path="res://assets/eye-icon.svg" id="3_16dih"]
+[ext_resource type="AudioStream" uid="uid://u78fq3iqs2ll" path="res://assets/select.wav" id="5_0wxrh"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e53kq")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.145098, 0.196078, 1)
+
+[node name="Background" parent="." instance=ExtResource("1_vvu1p")]
+
+[node name="Transp" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.168627)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -218.0
+offset_right = 218.0
+offset_bottom = 205.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 150
+text = "PONG"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -210.0
+offset_right = 75.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Quit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -210.0
+offset_right = 75.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="pve" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Player Vs. CPU"
+
+[node name="pvp" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Player Vs. Player"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -210.0
+offset_right = 75.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="eas" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Easy"
+
+[node name="nor" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Normal"
+
+[node name="hard" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Hard"
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 284.0
+offset_bottom = -19.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "A Game By Travrei. Made for 20 games Challange"
+horizontal_alignment = 1
+
+[node name="View" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -49.0
+offset_right = 85.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("3_0aph3")
+texture_hover = ExtResource("3_16dih")
+
+[node name="Select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0wxrh")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer2/pve" to="." method="_on_pve_pressed"]
+[connection signal="pressed" from="VBoxContainer2/pvp" to="." method="_on_pvp_pressed"]
+[connection signal="pressed" from="VBoxContainer3/eas" to="." method="_on_eas_pressed"]
+[connection signal="pressed" from="VBoxContainer3/nor" to="." method="_on_nor_pressed"]
+[connection signal="pressed" from="VBoxContainer3/hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="View" to="." method="_on_view_pressed"]

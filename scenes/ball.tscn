@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8lb03ae5ogfd"]
+
+[ext_resource type="AudioStream" uid="uid://bqodqicg53q18" path="res://assets/collision.wav" id="1_jy1a2"]
+[ext_resource type="AudioStream" uid="uid://cb0ahk3aakjd4" path="res://assets/point.wav" id="2_yk7af"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1qun"]
+size = Vector2(42, 42)
+
+[node name="Ball" type="Ball"]
+scale = Vector2(0.8, 0.8)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.25
+offset_top = -16.25
+offset_right = 23.75
+offset_bottom = 23.75
+scale = Vector2(0.8, 0.8)
+metadata/_edit_use_anchors_ = true
+
+[node name="PaddleDetec" type="Area2D" parent="."]
+position = Vector2(-16.25, -16.25)
+scale = Vector2(0.8, 0.8)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaddleDetec"]
+position = Vector2(20.3125, 20.3125)
+shape = SubResource("RectangleShape2D_n1qun")
+
+[node name="WallDetec" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallDetec"]
+position = Vector2(1.19209e-06, 1.19209e-06)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_n1qun")
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="collision" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_jy1a2")
+
+[node name="point" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yk7af")
+
+[connection signal="body_entered" from="PaddleDetec" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="WallDetec" to="." method="_on_wall_entered"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

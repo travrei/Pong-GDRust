@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmahdumn23xyc"]
+
+[ext_resource type="Script" path="res://scenes/arenaPVE.gd" id="1_4arus"]
+[ext_resource type="PackedScene" uid="uid://b5iqiflw1dmr5" path="res://scenes/paddle_1.tscn" id="1_20qvc"]
+[ext_resource type="PackedScene" uid="uid://c8lb03ae5ogfd" path="res://scenes/ball.tscn" id="3_hv77j"]
+[ext_resource type="PackedScene" uid="uid://m8i1f75il4s6" path="res://scenes/score_1.tscn" id="4_mkuse"]
+[ext_resource type="Theme" uid="uid://snly1tl3okto" path="res://scenes/pong_theme.tres" id="5_mw2wl"]
+[ext_resource type="PackedScene" uid="uid://rp4keyu6e046" path="res://scenes/paddle_cpu.tscn" id="6_5sdt0"]
+[ext_resource type="PackedScene" uid="uid://c0bw5x6vcrgco" path="res://scenes/score_2.tscn" id="6_30o6n"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sc5rj"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c6n7s"]
+
+[node name="ArenaPVP" type="Node2D"]
+script = ExtResource("1_4arus")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1287.0
+offset_bottom = 727.0
+color = Color(0.129412, 0.145098, 0.196078, 1)
+
+[node name="Divider" type="Line2D" parent="."]
+points = PackedVector2Array(641, -18, 641, 354.179, 641, 738)
+default_color = Color(0.376471, 0.376471, 0.376471, 0.670588)
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="TopWall"]
+offset_right = 1281.0
+offset_bottom = 22.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(641, 21)
+shape = SubResource("WorldBoundaryShape2D_sc5rj")
+
+[node name="Bottom Wall" type="StaticBody2D" parent="."]
+position = Vector2(0, 698)
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Bottom Wall"]
+offset_right = 1281.0
+offset_bottom = 22.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+position = Vector2(641, 1)
+shape = SubResource("WorldBoundaryShape2D_c6n7s")
+
+[node name="Paddle1" parent="." instance=ExtResource("1_20qvc")]
+speed = 200.0
+position = Vector2(10, 281)
+
+[node name="Ball" parent="." instance=ExtResource("3_hv77j")]
+speed = 800.0
+position = Vector2(640, 360)
+
+[node name="Score1" parent="." instance=ExtResource("4_mkuse")]
+offset_left = 596.0
+offset_top = 28.0
+offset_right = 636.0
+offset_bottom = 51.0
+theme = ExtResource("5_mw2wl")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Score2" parent="." instance=ExtResource("6_30o6n")]
+offset_left = 646.0
+offset_top = 28.0
+offset_right = 686.0
+offset_bottom = 95.0
+theme = ExtResource("5_mw2wl")
+text = "0"
+
+[node name="PaddleCPU" parent="." instance=ExtResource("6_5sdt0")]
+speed = 200.0
+position = Vector2(1250, 278)
+collision_layer = 2
+collision_mask = 5

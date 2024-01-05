@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbnyletavkuda"]
+
+[ext_resource type="PackedScene" uid="uid://dmahdumn23xyc" path="res://scenes/arenaPVE.tscn" id="1_5q5hg"]
+
+[node name="ArenaPVP" instance=ExtResource("1_5q5hg")]
+
+[node name="Paddle1" parent="." index="4"]
+speed = 250.0
+
+[node name="Score1" parent="." index="6"]
+offset_top = 27.0
+offset_bottom = 94.0
+
+[node name="Score2" parent="." index="7"]
+offset_left = 645.0
+offset_right = 685.0
+
+[node name="PaddleCPU" parent="." index="8"]
+speed = 250.0

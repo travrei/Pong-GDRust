@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://de5lsbkxt772u"]
+
+[ext_resource type="PackedScene" uid="uid://dmahdumn23xyc" path="res://scenes/arenaPVE.tscn" id="1_t520p"]
+
+[node name="ArenaPVP" instance=ExtResource("1_t520p")]
+
+[node name="PaddleCPU" parent="." index="8"]
+speed = 150.0

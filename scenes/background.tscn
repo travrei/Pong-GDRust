@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5trnm36cj4p4"]
+
+[ext_resource type="PackedScene" uid="uid://c8lb03ae5ogfd" path="res://scenes/ball.tscn" id="1_g52vr"]
+[ext_resource type="PackedScene" uid="uid://rp4keyu6e046" path="res://scenes/paddle_cpu.tscn" id="2_x0poa"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n26es"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t8a4w"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Divider" type="Line2D" parent="."]
+points = PackedVector2Array(641, -18, 641, 354.179, 641, 738)
+default_color = Color(0.376471, 0.376471, 0.376471, 0.670588)
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="TopWall"]
+offset_right = 1281.0
+offset_bottom = 22.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(641, 21)
+shape = SubResource("WorldBoundaryShape2D_n26es")
+
+[node name="Bottom Wall" type="StaticBody2D" parent="."]
+position = Vector2(0, 698)
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Bottom Wall"]
+offset_right = 1281.0
+offset_bottom = 22.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+position = Vector2(641, 1)
+shape = SubResource("WorldBoundaryShape2D_t8a4w")
+
+[node name="Ball" parent="." instance=ExtResource("1_g52vr")]
+speed = 800.0
+position = Vector2(640, 360)
+
+[node name="PaddleCPU2" parent="." instance=ExtResource("2_x0poa")]
+speed = 200.0
+position = Vector2(9, 285)
+collision_layer = 2
+collision_mask = 5
+
+[node name="PaddleCPU" parent="." instance=ExtResource("2_x0poa")]
+speed = 200.0
+position = Vector2(1250, 278)
+collision_layer = 2
+collision_mask = 5
